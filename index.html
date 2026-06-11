@@ -350,6 +350,165 @@
       transform: translate(-50%,-50%);
       transition: left 0.12s ease, top 0.12s ease;
     }
+    /* ──────────────────────────────
+   MOBILE OPTIMIZATION
+────────────────────────────── */
+
+@media (max-width: 768px) {
+
+  /* Hide custom cursor on touch devices */
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+
+  /* Navigation */
+  nav {
+    padding: 0.9rem 1rem;
+  }
+
+  .nav-logo {
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    gap: 0.8rem;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+  }
+
+  /* Hero */
+  #hero {
+    padding: 0 1.2rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-name {
+    font-size: clamp(2.8rem, 15vw, 4.5rem);
+    line-height: 1;
+  }
+
+  .hero-sub {
+    margin-top: 1.2rem;
+    max-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 140px;
+    padding: 0.8rem 1rem;
+  }
+
+  /* About */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-avatar {
+    width: 220px;
+    height: 220px;
+  }
+
+  .about-avatar-badge {
+    position: static;
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .skills-grid {
+    justify-content: center;
+  }
+
+  /* Projects */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    padding: 1.5rem;
+  }
+
+  .project-links {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  /* Contact */
+  .contact-inner {
+    padding: 1.5rem;
+  }
+
+  .contact-email {
+    font-size: 1rem;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .social-link {
+    flex: 1 1 calc(50% - 0.5rem);
+    justify-content: center;
+  }
+
+  /* Footer */
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.6rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero-name {
+    font-size: 2.6rem;
+  }
+
+  .hero-tag {
+    font-size: 0.7rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .social-link {
+    flex: 1 1 100%;
+  }
+
+  section {
+    padding: 3.5rem 1rem;
+  }
+}
   </style>
 </head>
 <body>
