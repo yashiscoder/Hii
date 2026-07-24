@@ -706,6 +706,19 @@ const CONFIG = {
       live:   ""
     }
   ],
+    paper: {
+      emoji: "📄",
+      title: "Secure and Scalable Data Access Control in Cloud Computing: A Cryptographic Approach",
+      desc: "Published research focusing on secure cloud data access using cryptographic techniques. The paper discusses scalable encryption mechanisms, secure key management, and access control models for protecting cloud-stored data with an Impact Factor of 8.76.",
+      tags: [
+          "Research",
+          "Cloud Computing",
+          "Cryptography",
+          "Security"
+      ],
+      pdf: "https://lnkd.in/g2-FUeNf",
+      published: "https://lnkd.in/gCbkZv3N"
+  },
 
   socials: [
     {
@@ -791,41 +804,32 @@ function render() {
       </article>`).join("");
   
   // Paper    
-  document.getElementById("paperGrid").innerHTML = `
-  <article class="paper-card reveal">
-      <div class="project-emoji">📄</div>
+  const paper = CONFIG.paper;
 
-      <h3 class="project-title">
-        Secure and Scalable Data Access Control in Cloud Computing:
-        A Cryptographic Approach
-      </h3>
+document.getElementById("paperGrid").innerHTML = `
+<article class="paper-card reveal">
+    <div class="project-emoji">${paper.emoji}</div>
 
-      <p class="project-desc">
-        Published research focusing on secure cloud data access using
-        cryptographic techniques. The paper discusses scalable encryption
-        mechanisms, secure key management, and access control models for
-        protecting cloud-stored data.
-      </p>
+    <h3 class="project-title">${paper.title}</h3>
 
-      <div class="project-tags">
-          <span class="project-tag">Research</span>
-          <span class="project-tag">Cloud Computing</span>
-          <span class="project-tag">Cryptography</span>
-          <span class="project-tag">Security</span>
-      </div>
+    <p class="project-desc">${paper.desc}</p>
 
-      <div class="project-links">
-          <a class="project-link" href="https://lnkd.in/g2-FUeNf" target="_blank">
-              📄 PDF Version
-          </a>
-      </div>
-      <div class="project-links">
-          <a class="project-link" href="https://lnkd.in/gCbkZv3N" target="_blank">
-              🔗 Published Paper
-          </a>
-      </div>
-  </article>
-`;
+    <div class="project-tags">
+        ${paper.tags.map(tag =>
+            `<span class="project-tag">${tag}</span>`
+        ).join("")}
+    </div>
+
+    <div class="project-links">
+        <a class="project-link" href="${paper.pdf}" target="_blank">
+            📄 PDF Version
+        </a>
+
+        <a class="project-link" href="${paper.published}" target="_blank">
+            🔗 Published Paper
+        </a>
+    </div>
+</article>`;
   // Contact
   document.getElementById("contactEmail").href = `mailto:${CONFIG.email}`;
   document.getElementById("contactEmail").textContent = CONFIG.email;
