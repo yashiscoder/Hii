@@ -260,6 +260,42 @@
     }
     .project-link:hover { color: var(--accent); }
 
+    /* Research Paper Card */
+    .paper-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.8rem;
+      min-height: 420px;
+      max-width: 900px;
+      margin: 0 auto;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paper-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s;
+    }
+
+    .paper-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,229,160,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .paper-card:hover::before {
+      transform: scaleX(1);
+    }
     /* ── CONTACT ── */
     #contact { border-top: 1px solid var(--border); }
 
@@ -588,7 +624,7 @@
   <p class="section-label reveal">03 — Archievement</p>
   <h2 class="section-title reveal">Paper</h2>
 
-  <div class="projects-grid" id="projectsGrid">
+  <div id="paperGrid"></div>
     <!-- Research rendered by JS -->
   </div>
 </section>
@@ -753,7 +789,38 @@ function render() {
           ${p.live   ? `<a class="project-link" href="${p.live}"   target="_blank">↗ Live Demo</a>` : ""}
         </div>
       </article>`).join("");
+  
+  // Paper    
+  document.getElementById("paperGrid").innerHTML = `
+  <article class="paper-card reveal">
+      <div class="project-emoji">📄</div>
 
+      <h3 class="project-title">
+        Secure and Scalable Data Access Control in Cloud Computing:
+        A Cryptographic Approach
+      </h3>
+
+      <p class="project-desc">
+        Published research focusing on secure cloud data access using
+        cryptographic techniques. The paper discusses scalable encryption
+        mechanisms, secure key management, and access control models for
+        protecting cloud-stored data.
+      </p>
+
+      <div class="project-tags">
+          <span class="project-tag">Research</span>
+          <span class="project-tag">Cloud Computing</span>
+          <span class="project-tag">Cryptography</span>
+          <span class="project-tag">Security</span>
+      </div>
+
+      <div class="project-links">
+          <a class="project-link" href="YOUR_PAPER_LINK" target="_blank">
+              📄 View Paper
+          </a>
+      </div>
+  </article>
+`;
   // Contact
   document.getElementById("contactEmail").href = `mailto:${CONFIG.email}`;
   document.getElementById("contactEmail").textContent = CONFIG.email;
