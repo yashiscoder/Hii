@@ -821,32 +821,30 @@ function render() {
       </article>`).join("");
   
   // Paper    
-  const paper = CONFIG.paper;
-
-document.getElementById("paperGrid").innerHTML = `
-<article class="paper-card reveal">
-    <div class="project-emoji">${paper.emoji}</div>
-
-    <h3 class="project-title">${paper.title}</h3>
-
-    <p class="project-desc">${paper.desc}</p>
-
+  document.getElementById("paperGrid").innerHTML =
+  CONFIG.paper.map(p => `
+  <article class="paper-card reveal">
+    <div class="project-emoji">${p.emoji}</div>
+    <h3 class="project-title">${p.title}</h3>
+    <p class="project-desc">${p.desc}</p>
     <div class="project-tags">
-        ${paper.tags.map(tag =>
+        ${p.tags.map(tag =>
             `<span class="project-tag">${tag}</span>`
         ).join("")}
     </div>
-
     <div class="project-links">
-        <a class="project-link" href="${paper.pdf}" target="_blank">
-            📄 PDF Version
-        </a>
+        ${p.pdf ? `
+        <a class="project-link" href="${p.pdf}" target="_blank">
+            📄 Certificate / PDF
+        </a>` : ""}
 
-        <a class="project-link" href="${paper.published}" target="_blank">
-            🔗 Published Paper
-        </a>
+        ${p.published ? `
+        <a class="project-link" href="${p.published}" target="_blank">
+            🔗 Published
+        </a>` : ""}
     </div>
-</article>`;
+</article>`).join("");
+
   // Contact
   document.getElementById("contactEmail").href = `mailto:${CONFIG.email}`;
   document.getElementById("contactEmail").textContent = CONFIG.email;
