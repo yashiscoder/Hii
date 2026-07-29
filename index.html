@@ -264,6 +264,12 @@
     .project-link:hover { color: var(--accent); }
 
     /* Research Paper Card */
+    #paperGrid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
     .paper-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -272,6 +278,7 @@
       min-height: 400px;
       max-width: 900px;
       margin: 0 auto;
+      width: 100%;
       transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
       position: relative;
       overflow: hidden;
