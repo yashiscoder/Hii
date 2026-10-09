@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Yash Kumawat – AI/ML Engineer & Developer portfolio">
 <meta name="theme-color" content="#000000">
 <title>Yash Kumawat — Portfolio</title>
@@ -28,8 +28,8 @@
   --radius:14px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--text);font-family:var(--font-display);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;scroll-padding-top:90px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{padding-inline:env(safe-area-inset-left) env(safe-area-inset-right);background:var(--bg);color:var(--text);font-family:var(--font-display);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 /* fonts applied explicitly so nothing falls back to the browser default */
 h1,h2,h3,button,.btn,nav a{font-family:var(--font-display)}
 img{max-width:100%;display:block}
@@ -40,14 +40,14 @@ body::before{background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 20
 body::after{background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px}
 
 /* nav */
-nav{position:fixed;top:15px;left:12px;right:12px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2.5rem;background:rgba(11,12,16,.8);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.12);border-radius:30px}
+nav{position:fixed;top:calc(15px + env(safe-area-inset-top));left:calc(12px + env(safe-area-inset-left));right:calc(12px + env(safe-area-inset-right));z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2.5rem;background:rgba(11,12,16,.8);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.12);border-radius:30px}
 .nav-logo{font:400 1.15rem var(--font-mono);letter-spacing:-.03em;color:var(--accent);text-decoration:none}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--accent)}
 
 /* hero */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(1.5rem,8vw,8rem)}
+#hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(1.5rem,8vw,8rem)}
 .hero-tag{font:400 .8rem var(--font-mono);color:var(--accent);letter-spacing:.12em;margin-bottom:1.2rem;max-width:760px;line-height:1.7}
 .hero-name{font-size:clamp(3.5rem,10vw,9rem);font-weight:800;line-height:.92;letter-spacing:-.04em}
 .hero-name .highlight{-webkit-text-stroke:2px var(--accent);color:transparent}
@@ -133,37 +133,69 @@ footer span:last-child{color:var(--accent)}
 .reveal.visible{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.hero-tag,.hero-name,.hero-sub,.hero-cta{opacity:1;transform:none}}
 
-/* responsive */
+/* responsive: large desktop > laptop > iPad landscape > iPad portrait > phone > small phone > landscape phone */
+@media (min-width:1600px){
+  html{font-size:112.5%}
+  .projects-grid,.about-grid{max-width:1500px;margin-inline:auto}
+}
+@media (max-width:1024px){
+  #hero,section,footer{padding-inline:clamp(1.5rem,5vw,4rem)}
+  .about-grid{gap:2.5rem}
+  .about-avatar-badge{right:.8rem;bottom:.8rem;font-size:.72rem}
+}
+@media (max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:2.5rem;max-width:640px;margin-inline:auto}
+  .about-avatar-wrap{display:flex;flex-direction:column;align-items:center}
+  .about-avatar{width:min(340px,70vw)}
+  .about-avatar-badge{position:static;margin-top:1rem;width:min(340px,100%);text-align:center}
+  .about-text{text-align:center}
+  .skills-grid{justify-content:center}
+  .contact-inner{max-width:100%}
+}
 @media (max-width:768px){
-  nav{padding:.9rem 1.1rem}
+  nav{padding:.8rem 1.1rem}
   .nav-logo{font-size:1rem}
   .nav-links{gap:.9rem}
-  .nav-links a{font-size:.68rem;letter-spacing:.04em}
-  #hero{padding:0 1.2rem;text-align:center;align-items:center}
+  .nav-links a{font-size:.68rem;letter-spacing:.04em;padding:.5rem 0;display:inline-block}
+  #hero{text-align:center;align-items:center}
   .hero-name{font-size:clamp(2.8rem,15vw,4.5rem);line-height:1}
   .hero-sub{max-width:100%;font-size:.95rem}
   .hero-cta{justify-content:center;width:100%}
-  .btn{flex:1;justify-content:center;min-width:140px;padding:.8rem 1rem}
-  .about-grid{grid-template-columns:1fr;gap:2rem}
-  .about-avatar-wrap{display:flex;flex-direction:column;align-items:center}
-  .about-avatar{width:220px;height:220px}
-  .about-avatar-badge{position:static;margin-top:1rem;width:100%;text-align:center}
-  .about-text{text-align:center}
-  .skills-grid{justify-content:center}
+  .btn{flex:1;justify-content:center;min-width:140px;min-height:46px;padding:.8rem 1rem}
   .card{padding:1.5rem}
   .contact-inner{padding:1.5rem}
   .social-links{justify-content:center}
-  .social-link{flex:1 1 calc(50% - .5rem);justify-content:center}
+  .social-link{flex:1 1 calc(50% - .5rem);justify-content:center;min-height:44px}
   footer{flex-direction:column;text-align:center;gap:.6rem}
 }
 @media (max-width:480px){
+  nav{top:calc(10px + env(safe-area-inset-top));padding:.7rem .9rem}
   .nav-links{gap:.6rem}
   .nav-links a{font-size:.6rem}
   .hero-name{font-size:2.6rem}
-  .hero-tag{font-size:.68rem}
+  .hero-tag{font-size:.68rem;letter-spacing:.06em}
   .btn{width:100%}
   .social-link{flex:1 1 100%}
-  section{padding:3.5rem 1rem}
+  section{padding-block:3.5rem}
+  .skill-chip{font-size:.72rem;padding:.4rem .8rem .4rem .6rem}
+  .project-desc{font-size:.88rem}
+}
+@media (max-width:360px){
+  .nav-logo{font-size:.9rem}
+  .nav-links{gap:.45rem}
+  .nav-links a{font-size:.55rem}
+  .hero-name{font-size:2.3rem}
+}
+/* phones held sideways / very short screens */
+@media (max-height:520px) and (orientation:landscape){
+  #hero{min-height:auto;padding-top:6.5rem;padding-bottom:3rem}
+  .hero-name{font-size:clamp(2.4rem,9vw,4rem)}
+  .hero-scroll{display:none}
+}
+/* touch devices: no sticky hover effects */
+@media (hover:none){
+  .card:hover,.skill-chip:hover,.social-link:hover,.btn-primary:hover{transform:none}
+  .card:hover::before{transform:scaleX(1)}
 }
 </style>
 </head>
