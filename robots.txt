@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yashiscoder.github.io/Hii/sitemap.xml
