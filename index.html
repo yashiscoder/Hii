@@ -71,8 +71,8 @@ nav.hide{transform:translate(-50%,-170%)}
 .sub{font:300 clamp(.95rem,1.6vw,1.1rem)/1.7 var(--m);color:var(--mu);max-width:50ch}
 .cta{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.4rem;margin-top:2rem}
 .cta .meta a{color:var(--tx);border-bottom:1px solid var(--ln);transition:border-color .3s}.cta .meta a:hover{border-color:var(--ac)}
-.wmw{order:2;font-size:1rem;margin-top:3.5rem}.wm{display:flex;justify-content:space-between;gap:.25em;font-size:clamp(2.5rem,10vw,12rem);font-weight:800;line-height:1;letter-spacing:-.05em;user-select:none;white-space:nowrap}.wm.col{flex-direction:column;gap:.04em}.ww{display:flex;justify-content:space-between}
-.ww>span{display:inline-block;overflow:hidden;padding:.06em 0;margin:-.06em 0;color:color-mix(in srgb,var(--ac) calc(var(--p,0)*100%),var(--tx));translate:0 calc(var(--p,0)*-.06em);transition:color .35s,translate .35s var(--ease)}
+.wmw{order:2;font-size:1rem;margin-top:3.5rem}.wm{display:flex;justify-content:space-between;gap:.25em;font-size:clamp(2.5rem,10vw,12rem);font-weight:800;line-height:1;letter-spacing:-.02em;user-select:none;white-space:nowrap}.wm.col{flex-direction:column;gap:.04em}.ww{display:flex;flex:none;justify-content:space-between}.wm.col .ww{justify-content:flex-start}
+.ww>span{display:inline-block;flex:none;clip-path:inset(-.3em -.3em 0 -.3em);color:color-mix(in srgb,var(--ac) calc(var(--p,0)*100%),var(--tx));translate:0 calc(var(--p,0)*-.06em);transition:color .35s,translate .35s var(--ease)}
 
 .wm i{display:inline-block;font-style:normal;transition:transform 1.2s var(--ease)}.js .wm i{transform:translateY(105%)}
 .ready .wm i{transform:none}
@@ -340,7 +340,7 @@ $$('.menu a').forEach(a=>a.addEventListener('click',()=>tm(false)));
 const root=document.documentElement,hero=$('#hero'),wm=$('#wm'),mq=$('.mq'),tr=$('.mq div'),stk=$('#stack'),cards=$$('.pc'),nv=$('#nav'),bar=$('#bar'),Ls=$$('#wm .ww>span');
 let ctr=[],half=0,flat=false;
 function chk(){flat=innerWidth<=860||cards.some(c=>c.offsetHeight>innerHeight-150);stk.classList.toggle('flat',flat);if(flat)cards.forEach(c=>{c.style.scale='';c._t=0;c.style.removeProperty('--dim')})}
-function fit(){const col=innerWidth<=600,aw=hero.clientWidth-2*parseFloat(getComputedStyle(hero).paddingLeft);wm.classList.toggle('col',col);wm.style.fontSize='100px';const nat=$$('#wm .ww').map(w=>[...w.children].reduce((a,s)=>a+s.offsetWidth,0));wm.style.fontSize=Math.min(100*aw/(col?Math.max(...nat):nat.reduce((a,b)=>a+b,0)+25)*.99,320)+'px';const sy=scrollY;ctr=Ls.map(s=>{const r=s.getBoundingClientRect();return[r.left+r.width/2,r.top+sy+r.height/2]});half=tr.scrollWidth/2;chk();stack()}
+function fit(){const col=innerWidth<=900,aw=hero.clientWidth-2*parseFloat(getComputedStyle(hero).paddingLeft);wm.classList.toggle('col',col);wm.style.fontSize='100px';const nat=$$('#wm .ww').map(w=>[...w.children].reduce((a,s)=>a+s.getBoundingClientRect().width,0));wm.style.fontSize=Math.min(100*aw/(col?Math.max(...nat):nat.reduce((a,b)=>a+b,0)+25)*.99,320)+'px';const sy=scrollY;ctr=Ls.map(s=>{const r=s.getBoundingClientRect();return[r.left+r.width/2,r.top+sy+r.height/2]});half=tr.scrollWidth/2;chk();stack()}
 let hp=null,hf=0;
 hero.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;hp=e;hf=hf||requestAnimationFrame(()=>{hf=0;const b=hero.getBoundingClientRect();hero.style.setProperty('--mx',hp.clientX-b.left+'px');hero.style.setProperty('--my',hp.clientY-b.top+'px');Ls.forEach((s,i)=>ctr[i]&&s.style.setProperty('--p',Math.max(0,1-Math.hypot(hp.clientX-ctr[i][0],hp.pageY-ctr[i][1])/240).toFixed(2)))})});
 hero.addEventListener('pointerleave',()=>Ls.forEach(s=>s.style.setProperty('--p',0)));
